@@ -7,17 +7,19 @@
 <div class="row">
     <div class="col-md-5">
         {% for img in tarjeta.card_images %}
+        <div class="mb-3">
             <p>Imagen 1</p>
             <img src="{{ img.image_url }}" style="max-width: 250px;">
-            <br><br>
+           
             <p>Imagen 2</p>
             <img src="{{ img.image_url_small }}" style="max-width: 250px;">
-            <br><br>
+           
             <p>Imagen 3</p>
             <img src="{{ img.image_url_cropped }}" style="max-width: 250px;">
-            <br><br>
+            
+        </div>
         {% endfor %}
-    </div>
+    </div>  
     
     <div class="col-md-7 text-start">
         <h2>{{ tarjeta.name }}</h2>
