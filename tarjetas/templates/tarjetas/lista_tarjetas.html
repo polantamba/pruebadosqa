@@ -1,0 +1,37 @@
+{% extends 'tarjetas/base.html' %}
+
+{% block title %}Catálogo Blue-Eyes{% endblock %}
+
+{% block content %}
+<br>
+<h1>Colección Blue-Eyes White Dragon</h1>
+<br>
+<div class="row">
+    {% for tarjeta in page_obj %}
+    <div class="col-md-3 mb-4">
+        <div class="card">
+            <img src="{{ tarjeta.card_images.0.image_url }}" class="card-img-top" alt="{{ tarjeta.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ tarjeta.name }}</h5>
+                <p>Precio Amazon: ${{ tarjeta.card_prices.0.amazon_price }}</p>
+                <a href="{% url 'detalle_tarjeta' tarjeta.id %}" class="btn btn-primary">Ver Detalles</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<br>
+<div>
+    {% if page_obj.has_previous %}
+        <a href="?page=1" class="btn btn-outline-primary">Inicio</a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-primary">Anterior</a>
+    {% endif %}
+    
+    <span class="mx-3">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}</span>
+    
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="btn btn-primary">Siguiente</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-outline-primary">Fin</a>
+    {% endif %}
+</div>
+{% endblock %}

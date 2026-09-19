@@ -1,0 +1,50 @@
+{% extends 'tarjetas/base.html' %}
+
+{% block title %}{{ tarjeta.name }}{% endblock %}
+
+{% block content %}
+<br>
+<div class="row">
+    <div class="col-md-5">
+        {% for img in tarjeta.card_images %}
+            <p>Imagen 1</p>
+            <img src="{{ img.image_url }}" style="max-width: 250px;">
+            <br><br>
+            <p>Imagen 2</p>
+            <img src="{{ img.image_url_small }}" style="max-width: 250px;">
+            <br><br>
+            <p>Imagen 3</p>
+            <img src="{{ img.image_url_cropped }}" style="max-width: 250px;">
+            <br><br>
+        {% endfor %}
+    </div>
+    
+    <div class="col-md-7 text-start">
+        <h2>{{ tarjeta.name }}</h2>
+        <hr>
+        <ul class="list-group">
+            <li class="list-group-item">ID: {{ tarjeta.id }}</li>
+            <li class="list-group-item">Tipo: {{ tarjeta.type }}</li>
+            
+            {% if tarjeta.frameType %}
+            <li class="list-group-item">Frame Type: {{ tarjeta.frameType }}</li>
+            {% endif %}
+            
+            {% if tarjeta.race %}
+            <li class="list-group-item">Raza: {{ tarjeta.race }}</li>
+            {% endif %}
+            
+            {% if tarjeta.attribute %}
+            <li class="list-group-item">Atributo: {{ tarjeta.attribute }}</li>
+            {% endif %}
+        </ul>
+        <br>
+        <div>
+            <h5>Descripción:</h5>
+            <p>{{ tarjeta.desc }}</p>
+        </div>
+        <br>
+        <a href="{% url 'lista_tarjetas' %}" class="btn btn-secondary">Regresar</a>
+    </div>
+</div>
+{% endblock %}  
